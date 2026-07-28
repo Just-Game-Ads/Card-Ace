@@ -3,17 +3,17 @@ class Start extends Phaser.Scene {
         super('Start');
 
         this.LAYOUT_PORTRAIT = {
-            card_ace_screen_0_table: { x: 540, y: 960, scale: 0.6, depth: 2 },
-            card_logo: { x: 540, y: 884, scale: 0.8, depth: 3 },
-            hand_pointer: { x: 538, y: 1223, scale: 0.7, depth: 4 },
-            play_button: { x: 540, y: 1116, scale: 1, depth: 3 },
+            card_ace_screen_0_table: { x: 540, y: 960, scale: 1, angle: -90 },
+            card_logo: { x: 540, y: 884, scale: 1, depth: 3, angle: 0 },
+            hand_pointer: { x: 538, y: 1271, scale: 0.7, depth: 4, angle: 0 },
+            play_button: { x: 540, y: 1162, scale: 1, depth: 3, angle: 0 },
         };
 
         this.LAYOUT_LANDSCAPE = {
-            card_ace_screen_0_table: { x: 960, y: 540, scale: 1, depth: 2 },
-            card_logo: { x: 960, y: 392, scale: 1, depth: 3 },
-            hand_pointer: { x: 958, y: 779, scale: 0.7, depth: 4 },
-            play_button: { x: 960, y: 670, scale: 1, depth: 3 },
+            card_ace_screen_0_table: { x: 960, y: 540, scale: 1, depth: 2, angle: 0 },
+            card_logo: { x: 960, y: 392, scale: 1, depth: 3, angle: 0 },
+            hand_pointer: { x: 958, y: 779, scale: 0.7, depth: 4, angle: 0 },
+            play_button: { x: 960, y: 670, scale: 1, depth: 3, angle: 0 },
         };
     }
 
@@ -88,11 +88,11 @@ class Start extends Phaser.Scene {
 
         for (const key in layout) {
             if (this[key] && layout.hasOwnProperty(key)) {
-                const { x, y, scale } = layout[key];
+                const { x, y, scale, angle } = layout[key];
                 const posX = x - baseW / 2;
                 const posY = y - baseH / 2;
                 this[key].setPosition(posX, posY).setScale(scale);
-                this[key].baseScale = scale;
+                if (angle !== undefined) this[key].setAngle(angle);
             }
         }
     }
