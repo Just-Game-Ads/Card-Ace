@@ -4,7 +4,6 @@ class Start extends Phaser.Scene {
 
         this.LAYOUT_PORTRAIT = {
             card_ace_screen_0_table: { x: 540, y: 960, scale: 0.6, depth: 2 },
-            card_ace_screen_01_bg: { x: 540, y: 960, scale: 1.8, depth: 1 },
             card_logo: { x: 540, y: 884, scale: 0.8, depth: 3 },
             hand_pointer: { x: 538, y: 1223, scale: 0.7, depth: 4 },
             play_button: { x: 540, y: 1116, scale: 1, depth: 3 },
@@ -12,7 +11,6 @@ class Start extends Phaser.Scene {
 
         this.LAYOUT_LANDSCAPE = {
             card_ace_screen_0_table: { x: 960, y: 540, scale: 1, depth: 2 },
-            card_ace_screen_01_bg: { x: 960, y: 540, scale: 1, depth: 1 },
             card_logo: { x: 960, y: 392, scale: 1, depth: 3 },
             hand_pointer: { x: 958, y: 779, scale: 0.7, depth: 4 },
             play_button: { x: 960, y: 670, scale: 1, depth: 3 },
@@ -24,6 +22,7 @@ class Start extends Phaser.Scene {
     }
 
     create() {
+        this.scene.start('Game');
         this.createUI();
         this.onOrientationChange();
         // this.uiEditor = new UIEditor(this, {
@@ -50,6 +49,15 @@ class Start extends Phaser.Scene {
         this.card_logo = this.add.image(0, 0, 'card_logo').setOrigin(0.5);
         this.hand_pointer = this.add.image(0, 0, 'hand_pointer').setOrigin(0.5);
         this.play_button = this.add.image(0, 0, 'play_button').setOrigin(0.5);
+
+        this.startUIContainer = this.add.container(0, 0);
+        this.startUIContainer.add([
+            this.card_ace_screen_0_table, 
+            this.card_logo, 
+            this.play_button,
+            this.hand_pointer, 
+        ]);
+
     }
 
     onOrientationChange() {
@@ -60,16 +68,30 @@ class Start extends Phaser.Scene {
     reflowForResize(gameSize = { width: this.scale.width, height: this.scale.height }) {
         const isLandscape = gameSize.width > gameSize.height;
         const layout = isLandscape ? this.LAYOUT_LANDSCAPE : this.LAYOUT_PORTRAIT;
+        const baseW = isLandscape ? 1920 : 1080;
+        const baseH = isLandscape ? 1080 : 1920;
+        const gameW = gameSize.width;
+        const gameH = gameSize.height;
+        const centerX = gameSize.width / 2;
+        const centerY = gameSize.height / 2;
+        const scaleX = gameSize.width / baseW;
+        const scaleY = gameSize.height / baseH;
+
+        if (!this.card_ace_screen_01_bg) return;
+
+        const bgScale = Math.max(gameW / this.card_ace_screen_01_bg.width, gameH / this.card_ace_screen_01_bg.height);
+        this.card_ace_screen_01_bg.setPosition(centerX, centerY).setScale(bgScale);
+
+        const startUIScale = Math.min(scaleX, scaleY);
+        this.startUIContainer.setPosition(centerX, centerY).setScale(startUIScale);
 
         for (const key in layout) {
             if (this[key] && layout.hasOwnProperty(key)) {
-                const { x, y, scale, alpha, depth, angle, r } = layout[key];
-                this[key].setPosition(x, y);
-                if (angle !== undefined) this[key].setAngle(angle);
-                else if (r !== undefined) this[key].setRotation(r);
-                if (scale) this[key].setScale(scale);
-                if (alpha !== undefined) this[key].setAlpha(alpha);
-                if (depth !== undefined) this[key].setDepth(depth);
+                const { x, y, scale } = layout[key];
+                const posX = x - baseW / 2;
+                const posY = y - baseH / 2;
+                this[key].setPosition(posX, posY).setScale(scale);
+                this[key].baseScale = scale;
             }
         }
     }
