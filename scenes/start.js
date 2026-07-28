@@ -22,7 +22,8 @@ class Start extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('Game');
+        // this.scene.start('Game');
+        // this.scene.start('End');
         this.createUI();
         this.onOrientationChange();
         // this.uiEditor = new UIEditor(this, {
