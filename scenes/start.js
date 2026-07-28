@@ -26,12 +26,12 @@ class Start extends Phaser.Scene {
     create() {
         this.createUI();
         this.onOrientationChange();
-        this.uiEditor = new UIEditor(this, {
-            enabled: true,
-            keys: this.getEditorKeys(),
-            gridSize: 10,
-            fileName: 'start.js'
-        });
+        // this.uiEditor = new UIEditor(this, {
+        //     enabled: true,
+        //     keys: this.getEditorKeys(),
+        //     gridSize: 10,
+        //     fileName: 'start.js'
+        // });
     }
 
     getEditorKeys() {
