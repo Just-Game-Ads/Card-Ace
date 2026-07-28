@@ -49,12 +49,12 @@ class End extends Phaser.Scene {
     create() {
         this.createEndUI();
         this.onOrientationChange();
-        this.uiEditor = new UIEditor(this, {
-            enabled: true,
-            keys: this.getEditorKeys(),
-            gridSize: 10,
-            fileName: 'end.js'
-        });
+        // this.uiEditor = new UIEditor(this, {
+        //     enabled: true,
+        //     keys: this.getEditorKeys(),
+        //     gridSize: 10,
+        //     fileName: 'end.js'
+        // });
     }
 
     getEditorKeys() {
