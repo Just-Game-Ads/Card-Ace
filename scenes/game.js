@@ -4,24 +4,12 @@ class Game extends Phaser.Scene {
 
         this.LAYOUT_PORTRAIT = {
             card_ace_screen_0_table: { x: 540, y: 960, scale: 0.6, depth: 2 },
-            card_ace_screen_01_bg: { x: 540, y: 936, scale: 1.8, depth: 1 },
-            card_logo: { x: 966, y: 104, scale: 0.45, depth: 10 },
-            hand_pointer: { x: -420, y: 420, scale: 1, depth: 1 },
-            card_ace_screen_01_mockup: { x: -420, y: 420, scale: 1, depth: 1 },
-            play_button: { x: -420, y: 420, scale: 1, depth: 1 },
-            card_ace_screen_03_2_mockup: { x: -420, y: 420, scale: 1, depth: 1 },
             clock_bg: { x: 86, y: 776, scale: 0.95, depth: 10 },
-            d_circle: { x: -420, y: 420, scale: 1, depth: 1 },
             diamond: { x: 654, y: 1180, scale: 0.9, depth: 81 },
-            icon_01: { x: -420, y: 420, scale: 1, depth: 1 },
             icon_02_1: { x: 116, y: 880, scale: 1, depth: 81 },
             icon_02_2: { x: 468, y: 748, scale: 1, depth: 81 },
             icon_02_3: { x: 1016, y: 880, scale: 1, depth: 81 },
             icon_02_4: { x: 468, y: 1182, scale: 1, depth: 81 },
-            icon_a: { x: -420, y: 420, scale: 1, depth: 1 },
-            icon_b: { x: -420, y: 420, scale: 1, depth: 1 },
-            icon_c: { x: -420, y: 420, scale: 1, depth: 1 },
-            icon_d: { x: -420, y: 420, scale: 1, depth: 1 },
             no_bg_0_big_01: { x: 540, y: 1180, scale: 1, depth: 79 },
             no_bg_0_big_02: { x: 540, y: 748, scale: 1, depth: 79 },
             no_bg_01: { x: 90, y: 1044, scale: 1, depth: 80 },
@@ -95,24 +83,13 @@ class Game extends Phaser.Scene {
 
         this.LAYOUT_LANDSCAPE = {
             card_ace_screen_0_table: { x: 960, y: 540, scale: 1, depth: 2 },
-            card_ace_screen_01_bg: { x: 960, y: 540, scale: 1, depth: 1 },
-            card_logo: { x: 1804, y: 98, scale: 0.45, depth: 10 },
-            hand_pointer: { x: 0, y: 0, scale: 1, depth: 1 },
-            card_ace_screen_01_mockup: { x: 0, y: 0, scale: 1, depth: 1 },
-            play_button: { x: 0, y: 0, scale: 1, depth: 1 },
-            card_ace_screen_03_2_mockup: { x: 0, y: 0, scale: 1, depth: 1 },
             clock_bg: { x: 174, y: 216, scale: 1.1, depth: 10 },
-            d_circle: { x: 0, y: 0, scale: 1, depth: 1 },
             diamond: { x: 1074, y: 922, scale: 0.9, depth: 81 },
             icon_01: { x: 0, y: 0, scale: 1, depth: 1 },
             icon_02_1: { x: 196, y: 460, scale: 1, depth: 81 },
             icon_02_2: { x: 888, y: 174, scale: 1, depth: 81 },
             icon_02_3: { x: 1778, y: 460, scale: 1, depth: 81 },
             icon_02_4: { x: 888, y: 922, scale: 1, depth: 81 },
-            icon_a: { x: 0, y: 0, scale: 1, depth: 1 },
-            icon_b: { x: 0, y: 0, scale: 1, depth: 1 },
-            icon_c: { x: 0, y: 0, scale: 1, depth: 1 },
-            icon_d: { x: 0, y: 0, scale: 1, depth: 1 },
             no_bg_0_big_01: { x: 960, y: 922, scale: 1, depth: 79 },
             no_bg_0_big_02: { x: 960, y: 174, scale: 1, depth: 79 },
             no_bg_01: { x: 170, y: 670, scale: 1, depth: 80 },
@@ -147,7 +124,6 @@ class Game extends Phaser.Scene {
             diamonds_09: { x: 1636, y: 537, scale: 0.55, angle: -54.431, depth: 8 },
             diamonds_10: { x: 1641, y: 528, scale: 0.55, angle: -45.837, depth: 10 },
             diamonds_j: { x: 1648, y: 520, scale: 0.55, angle: -37.242, depth: 12 },
-            diamonds_joker: { x: 0, y: 0, scale: 0.55, depth: 3 },
             diamonds_k: { x: 1665, y: 498, scale: 0.55, angle: -20.054, depth: 13 },
             diamonds_q: { x: 1654, y: 508, scale: 0.55, angle: -28.648, depth: 12 },
             hearts_01: { x: 256, y: 491, scale: 0.55, angle: 8.594, depth: 14 },
@@ -202,19 +178,12 @@ class Game extends Phaser.Scene {
             // 'card_ace_screen_0_table',
             // 'card_ace_screen_01_bg',
             // 'card_logo',
-            // 'hand_pointer',
             // 'clock_bg',
-            // 'd_circle',
             // 'diamond',
-            // 'icon_01',
             // 'icon_02_1',
             // 'icon_02_2',
             // 'icon_02_3',
             // 'icon_02_4',
-            // 'icon_a',
-            // 'icon_b',
-            // 'icon_c',
-            // 'icon_d',
             // 'no_bg_0_big_01',
             // 'no_bg_0_big_02',
             // 'no_bg_01',
@@ -249,7 +218,6 @@ class Game extends Phaser.Scene {
             // 'diamonds_09',
             // 'diamonds_10',
             // 'diamonds_j',
-            // 'diamonds_joker',
             // 'diamonds_k',
             // 'diamonds_q',
             // 'hearts_01',
@@ -291,22 +259,14 @@ class Game extends Phaser.Scene {
     createGameUI() {
         this.card_ace_screen_0_table = this.add.image(0, 0, 'card_ace_screen_0_table').setOrigin(0.5);
         this.card_ace_screen_01_bg = this.add.image(0, 0, 'card_ace_screen_01_bg').setOrigin(0.5);
-        this.card_logo = this.add.image(0, 0, 'card_logo').setOrigin(0.5);
 
-        // this.hand_pointer = this.add.image(0, 0, 'hand_pointer').setOrigin(0.5);
         this.clock_bg = this.add.image(0, 0, 'clock_bg').setOrigin(0.5);
 
-        // this.d_circle = this.add.image(0, 0, 'd_circle').setOrigin(0.5);
         this.diamond = this.add.image(0, 0, 'diamond').setOrigin(0.5);
-        // this.icon_01 = this.add.image(0, 0, 'icon_01').setOrigin(0.5);
         this.icon_02_1 = this.add.image(0, 0, 'icon_02').setOrigin(0.5);
         this.icon_02_2 = this.add.image(0, 0, 'icon_02').setOrigin(0.5);
         this.icon_02_3 = this.add.image(0, 0, 'icon_02').setOrigin(0.5);
         this.icon_02_4 = this.add.image(0, 0, 'icon_02').setOrigin(0.5);
-        // this.icon_a = this.add.image(0, 0, 'icon_a').setOrigin(0.5);
-        // this.icon_b = this.add.image(0, 0, 'icon_b').setOrigin(0.5);
-        // this.icon_c = this.add.image(0, 0, 'icon_c').setOrigin(0.5);
-        // this.icon_d = this.add.image(0, 0, 'icon_d').setOrigin(0.5);
 
         this.no_bg_0_big_01 = this.add.image(0, 0, 'no_bg_0_big_01').setOrigin(0.5);
         this.no_bg_0_big_02 = this.add.image(0, 0, 'no_bg_0_big_01').setOrigin(0.5);
@@ -378,13 +338,117 @@ class Game extends Phaser.Scene {
         this.spades_k = this.add.image(0, 0, 'spades_k').setOrigin(0.5);
         this.spades_q = this.add.image(0, 0, 'spades_q').setOrigin(0.5);
 
-        // this.minus_icon = this.add.image(0, 0, 'minus_icon').setOrigin(0.5);
-        // this.plus_icon = this.add.image(0, 0, 'plus_icon').setOrigin(0.5);
-        // this.progress_bar_background = this.add.image(0, 0, 'progress_bar_background').setOrigin(0.5);
-        // this.progress_bar_box_01 = this.add.image(0, 0, 'progress_bar_box_01').setOrigin(0.5);
-        // this.progress_bar_line_01 = this.add.image(0, 0, 'progress_bar_line_01').setOrigin(0.5);
-        // this.progress_bar_line_02 = this.add.image(0, 0, 'progress_bar_line_02').setOrigin(0.5);
-        // this.tick_01 = this.add.image(0, 0, 'tick_01').setOrigin(0.5);
+        this.minus_icon = this.add.image(0, 0, 'minus_icon').setOrigin(0.5);
+        this.plus_icon = this.add.image(0, 0, 'plus_icon').setOrigin(0.5);
+        this.progress_bar_background = this.add.image(0, 0, 'progress_bar_background').setOrigin(0.5);
+        this.progress_bar_box_01 = this.add.image(0, 0, 'progress_bar_box_01').setOrigin(0.5);
+        this.progress_bar_line_01 = this.add.image(0, 0, 'progress_bar_line_01').setOrigin(0.5);
+        this.progress_bar_line_02 = this.add.image(0, 0, 'progress_bar_line_02').setOrigin(0.5);
+        this.tick_01 = this.add.image(0, 0, 'tick_01').setOrigin(0.5);
+
+
+        this.gameUIContainer = this.add.container(0, 0);
+
+        this.gameUIContainer.add([
+
+            this.card_ace_screen_0_table,
+
+            this.clubs_01,
+            this.clubs_02,
+            this.clubs_03,
+            this.clubs_04,
+            this.clubs_05,
+            this.clubs_06,
+            this.clubs_07,
+            this.clubs_08,
+            this.clubs_09,
+            this.clubs_10,
+            this.clubs_j,
+            this.clubs_q,
+            this.clubs_k,
+
+            this.diamonds_02,
+            this.diamonds_03,
+            this.diamonds_04,
+            this.diamonds_05,
+            this.diamonds_06,
+
+            this.hearts_02,
+            this.hearts_03,
+            this.hearts_04,
+            this.hearts_05,
+            this.hearts_06,
+
+            this.spades_02,
+            this.spades_03,
+            this.spades_04,
+            this.spades_05,
+            this.spades_06,
+
+            this.diamonds_07,
+            this.hearts_07,
+            this.spades_07,
+
+            this.diamonds_08,
+            this.hearts_08,
+            this.spades_08,
+
+            this.diamonds_09,
+            this.hearts_09,
+
+            this.spades_09,
+
+            this.clock_bg,
+
+            this.diamonds_10,
+            this.hearts_10,
+            this.spades_10,
+
+            this.diamonds_j,
+            this.diamonds_q,
+            this.hearts_j,
+            this.hearts_q,
+            this.spades_j,
+            this.spades_q,
+
+            this.diamonds_k,
+            this.hearts_k,
+            this.spades_k,
+
+            this.diamonds_01,
+            this.hearts_01,
+            this.spades_01,
+
+            this.no_bg_0_big_01,
+            this.no_bg_0_big_02,
+
+            this.no_bg_01,
+            this.no_bg_02,
+            this.no_bg_03,
+            this.no_bg_04,
+
+            this.robot_user_01,
+            this.robot_user_02,
+            this.robot_user_03,
+            this.user_02,
+
+            this.diamond,
+            this.icon_02_1,
+            this.icon_02_2,
+            this.icon_02_3,
+            this.icon_02_4,
+
+            this.progress_bar_background,
+            this.minus_icon,
+            this.plus_icon,
+            this.progress_bar_line_02,
+            this.progress_bar_line_01,
+            this.tick_01,
+            this.progress_bar_box_01,
+
+        ]);
+
+        this.card_logo = this.add.image(0, 0, 'card_logo').setOrigin(0.5);
     }
 
     onOrientationChange() {
@@ -395,15 +459,38 @@ class Game extends Phaser.Scene {
     reflowForResize(gameSize = { width: this.scale.width, height: this.scale.height }) {
         const isLandscape = gameSize.width > gameSize.height;
         const layout = isLandscape ? this.LAYOUT_LANDSCAPE : this.LAYOUT_PORTRAIT;
+        const baseW = isLandscape ? 1920 : 1080;
+        const baseH = isLandscape ? 1080 : 1920;
+        const gameW = gameSize.width;
+        const gameH = gameSize.height;
+        const centerX = gameSize.width / 2;
+        const centerY = gameSize.height / 2;
+        const scaleX = gameSize.width / baseW;
+        const scaleY = gameSize.height / baseH;
+
+        if (!this.card_ace_screen_01_bg) return;
+
+        const bgScale = Math.max(gameW / this.card_ace_screen_01_bg.width, gameH / this.card_ace_screen_01_bg.height);
+        this.card_ace_screen_01_bg.setPosition(centerX, centerY).setScale(bgScale);
+
+        const gameUIScale = Math.min(scaleX, scaleY);
+        this.gameUIContainer.setPosition(centerX, centerY).setScale(gameUIScale);
+
+        // Dynamic screen-dependent positions
+        const safePadding = 30 * gameUIScale;
+
+        // Logo (Top Right)
+        const cardLogoScale = gameUIScale * 0.4;
+        this.card_logo.setScale(cardLogoScale);
+        this.card_logo.setPosition(gameW - safePadding - (this.card_logo.width * cardLogoScale) / 2, safePadding + (this.card_logo.height * cardLogoScale) / 2);
 
         for (const key in layout) {
             if (this[key] && layout.hasOwnProperty(key)) {
-                const { x, y, scale, alpha, depth, angle, r } = layout[key];
-                this[key].setPosition(x, y);
+                const { x, y, scale, angle, depth } = layout[key];
+                const posX = x - baseW / 2;
+                const posY = y - baseH / 2;
+                this[key].setPosition(posX, posY).setScale(scale);
                 if (angle !== undefined) this[key].setAngle(angle);
-                else if (r !== undefined) this[key].setRotation(r);
-                if (scale) this[key].setScale(scale);
-                if (alpha !== undefined) this[key].setAlpha(alpha);
                 if (depth !== undefined) this[key].setDepth(depth);
             }
         }
