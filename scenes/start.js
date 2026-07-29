@@ -26,12 +26,12 @@ class Start extends Phaser.Scene {
         // this.scene.start('End');
         this.createUI();
         this.onOrientationChange();
-        // this.uiEditor = new UIEditor(this, {
-        //     enabled: true,
-        //     keys: this.getEditorKeys(),
-        //     gridSize: 10,
-        //     fileName: 'start.js'
-        // });
+        this.uiEditor = new UIEditor(this, {
+            enabled: true,
+            keys: this.getEditorKeys(),
+            gridSize: 10,
+            fileName: 'start.js'
+        });
     }
 
     getEditorKeys() {
@@ -53,10 +53,10 @@ class Start extends Phaser.Scene {
 
         this.startUIContainer = this.add.container(0, 0);
         this.startUIContainer.add([
-            this.card_ace_screen_0_table, 
-            this.card_logo, 
+            this.card_ace_screen_0_table,
+            this.card_logo,
             this.play_button,
-            this.hand_pointer, 
+            this.hand_pointer,
         ]);
 
     }
