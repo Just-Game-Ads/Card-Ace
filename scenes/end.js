@@ -2,24 +2,24 @@ class End extends Phaser.Scene {
     constructor() {
         super('End');
         this.LAYOUT_PORTRAIT = {
-            card_ace_screen_0_table: { x: 540, y: 960, scale: 0.6, depth: 2 },
+            card_ace_screen_0_table: { x: 540, y: 960, scale: 0.85, angle: 90, depth: 2 },
             card_logo: { x: 966, y: 104, scale: 0.45, depth: 10 },
-            clock_bg: { x: 86, y: 776, scale: 0.95, depth: 10 },
-            diamond: { x: 654, y: 1180, scale: 0.9, depth: 81 },
-            icon_02_1: { x: 116, y: 880, scale: 1, depth: 81 },
-            icon_02_2: { x: 468, y: 748, scale: 1, depth: 81 },
-            icon_02_3: { x: 1016, y: 880, scale: 1, depth: 81 },
-            icon_02_4: { x: 468, y: 1182, scale: 1, depth: 81 },
-            no_bg_0_big_01: { x: 540, y: 1180, scale: 1, depth: 79 },
-            no_bg_0_big_02: { x: 540, y: 748, scale: 1, depth: 79 },
-            no_bg_01: { x: 90, y: 1044, scale: 1, depth: 80 },
-            no_bg_02: { x: 90, y: 880, scale: 1, depth: 80 },
-            no_bg_03: { x: 990, y: 1044, scale: 1, depth: 80 },
-            no_bg_04: { x: 990, y: 880, scale: 1, depth: 80 },
-            robot_user_01: { x: 990, y: 950, scale: 0.8, depth: 80 },
-            robot_user_02: { x: 540, y: 772, scale: 0.8, depth: 80 },
-            robot_user_03: { x: 90, y: 950, scale: 0.8, depth: 80 },
-            user_02: { x: 540, y: 1160, scale: 0.8, depth: 80 },
+            clock_bg: { x: 250, y: 330, scale: 0.95, depth: 10 },
+            diamond: { x: 240, y: 1094, scale: 0.9, depth: 81 },
+            icon_02_1: { x: 576, y: 270, scale: 1, depth: 81 },
+            icon_02_2: { x: 878, y: 864, scale: 1, depth: 81 },
+            icon_02_3: { x: 576, y: 1510, scale: 1, depth: 81 },
+            icon_02_4: { x: 240, y: 908, scale: 1, depth: 81 },
+            no_bg_0_big_01: { x: 240, y: 980, scale: 1, angle: 90, depth: 79 },
+            no_bg_0_big_02: { x: 878, y: 936, scale: 1, angle: 90, depth: 79 },
+            no_bg_01: { x: 550, y: 434, scale: 1, depth: 80 },
+            no_bg_02: { x: 550, y: 270, scale: 1, depth: 80 },
+            no_bg_03: { x: 550, y: 1674, scale: 1, depth: 80 },
+            no_bg_04: { x: 550, y: 1510, scale: 1, depth: 80 },
+            robot_user_01: { x: 550, y: 1580, scale: 0.8, depth: 80 },
+            robot_user_02: { x: 878, y: 960, scale: 0.8, depth: 80 },
+            robot_user_03: { x: 550, y: 340, scale: 0.8, depth: 80 },
+            user_02: { x: 240, y: 960, scale: 0.8, depth: 80 },
         };
 
         this.LAYOUT_LANDSCAPE = {
@@ -168,7 +168,11 @@ class End extends Phaser.Scene {
                 const posX = x - baseW / 2;
                 const posY = y - baseH / 2;
                 this[key].setPosition(posX, posY).setScale(scale);
-                if (angle !== undefined) this[key].setAngle(angle);
+                if (angle !== undefined) {
+                    this[key].setAngle(angle);
+                } else {
+                    this[key].setAngle(0);
+                }
                 if (depth !== undefined) this[key].setDepth(depth);
             }
         }
