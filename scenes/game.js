@@ -1188,16 +1188,16 @@ class Game extends Phaser.Scene {
         // Display bid next to avatar
         if (playerKey === 'player1') {
             this.name_text_p1.setText('You');
-            this.bid_text_p1.setText(`Bid: ${bidAmount} / 0`);
+            this.bid_text_p1.setText(`Bid: 0 / ${bidAmount}`);
         } else if (playerKey === 'player2') {
             this.name_text_p2.setText('Bot 3');
-            this.bid_text_p2.setText(`Bid: ${bidAmount} / 0`);
+            this.bid_text_p2.setText(`Bid: 0 / ${bidAmount}`);
         } else if (playerKey === 'player3') {
             this.name_text_p3.setText('Bot 2');
-            this.bid_text_p3.setText(`Bid: ${bidAmount} / 0`);
+            this.bid_text_p3.setText(`Bid: 0 / ${bidAmount}`);
         } else if (playerKey === 'player4') {
             this.name_text_p4.setText('Bot 1');
-            this.bid_text_p4.setText(`Bid: ${bidAmount} / 0`);
+            this.bid_text_p4.setText(`Bid: 0 / ${bidAmount}`);
         }
         
         this.bidsReceived++;
@@ -1585,10 +1585,10 @@ class Game extends Phaser.Scene {
         this.tricksWon[winner]++;
         
         // Update bid text to show trick count with Bot numbering
-        if (winner === 'player1') this.bid_text_p1.setText(`Bid: ${this.bids.player1} / ${this.tricksWon.player1}`);
-        if (winner === 'player4') this.bid_text_p4.setText(`Bid: ${this.bids.player4} / ${this.tricksWon.player4}`);
-        if (winner === 'player3') this.bid_text_p3.setText(`Bid: ${this.bids.player3} / ${this.tricksWon.player3}`);
-        if (winner === 'player2') this.bid_text_p2.setText(`Bid: ${this.bids.player2} / ${this.tricksWon.player2}`);
+        if (winner === 'player1') this.bid_text_p1.setText(`Bid: ${this.tricksWon.player1} / ${this.bids.player1}`);
+        if (winner === 'player4') this.bid_text_p4.setText(`Bid: ${this.tricksWon.player4} / ${this.bids.player4}`);
+        if (winner === 'player3') this.bid_text_p3.setText(`Bid: ${this.tricksWon.player3} / ${this.bids.player3}`);
+        if (winner === 'player2') this.bid_text_p2.setText(`Bid: ${this.tricksWon.player2} / ${this.bids.player2}`);
 
         // Animate trick cards to the winner
         const isLandscape = this.scale.width > this.scale.height;
