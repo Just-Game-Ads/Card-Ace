@@ -22,12 +22,14 @@ class Start extends Phaser.Scene {
     }
 
     create() {
-        // this.scene.start('Game');
-        // this.scene.start('End');
+        const settings = window.CARD_ACE_SETTINGS || {};
+        const audioSettings = settings.audio || { enabled: true };
+        this.sound.mute = !audioSettings.enabled;
+
         this.createUI();
         this.onOrientationChange();
         this.uiEditor = new UIEditor(this, {
-            enabled: true,
+            enabled: !!(window.CARD_ACE_SETTINGS?.editor?.uiEditorEnabled),
             keys: this.getEditorKeys(),
             gridSize: 10,
             fileName: 'start.js'
@@ -50,6 +52,24 @@ class Start extends Phaser.Scene {
         this.card_logo = this.add.image(0, 0, 'card_logo').setOrigin(0.5);
         this.hand_pointer = this.add.image(0, 0, 'hand_pointer').setOrigin(0.5);
         this.play_button = this.add.image(0, 0, 'play_button').setOrigin(0.5);
+
+        this.play_button.setInteractive().on('pointerdown', () => {
+            this.sound.play('sfx_click');
+            this.play_button.disableInteractive();
+            this.cameras.main.fadeOut(300, 0, 0, 0);
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+                this.scene.start('Game');
+            });
+        });
+
+        this.handTween = this.tweens.add({
+            targets: this.hand_pointer,
+            y: '+=30',
+            yoyo: true,
+            repeat: -1,
+            duration: 500,
+            ease: 'Sine.easeInOut'
+        });
 
         this.startUIContainer = this.add.container(0, 0);
         this.startUIContainer.add([
@@ -95,6 +115,22 @@ class Start extends Phaser.Scene {
                 if (angle !== undefined) this[key].setAngle(angle);
             }
         }
+        
+        // Re-create hand tween to operate from the new base position
+        if (this.handTween) {
+            this.handTween.stop();
+            this.handTween.remove();
+        }
+        if (this.hand_pointer) {
+            this.handTween = this.tweens.add({
+                targets: this.hand_pointer,
+                y: '+=30',
+                yoyo: true,
+                repeat: -1,
+                duration: 500,
+                ease: 'Sine.easeInOut'
+            });
+        }
     }
 
     loadAllTheAssets() {
@@ -124,7 +160,7 @@ class Start extends Phaser.Scene {
             { key: 'clubs_03', path: 'assets/game/all-cards/clubs-03.webp' },
             { key: 'clubs_04', path: 'assets/game/all-cards/clubs-04.webp' },
             { key: 'clubs_05', path: 'assets/game/all-cards/clubs-05.webp' },
-            { key: 'clubs_06', path: 'assets/game/all-cards/clubs-06.webp' },
+            { key: 'clubs_06', path: 'assets/game/all-cards/clubs_06.webp' },
             { key: 'clubs_07', path: 'assets/game/all-cards/clubs-07.webp' },
             { key: 'clubs_08', path: 'assets/game/all-cards/clubs-08.webp' },
             { key: 'clubs_09', path: 'assets/game/all-cards/clubs-09.webp' },
@@ -180,10 +216,23 @@ class Start extends Phaser.Scene {
             { key: 'progress_bar_line_02', path: 'assets/game/progress-bar/progress-bar-line-02.webp' },
             { key: 'progress_bar_mockup', path: 'assets/game/progress-bar/progress-bar-mockup.webp' },
             { key: 'tick_01', path: 'assets/game/progress-bar/tick-01.webp' },
+            { key: 'win_fail_logo', path: 'assets/game/asset_Card-Ace win_fail/logo.png' },
+            { key: 'download_btn', path: 'assets/game/asset_Card-Ace win_fail/download-btn_01.png' },
+            { key: 'try_again_btn', path: 'assets/game/asset_Card-Ace win_fail/try-again_btn.png' },
+            { key: 'win_bg', path: 'assets/game/asset_Card-Ace win_fail/win_bg_01.png' },
+            { key: 'win_img', path: 'assets/game/asset_Card-Ace win_fail/win_01.png' },
+            { key: 'fail_img', path: 'assets/game/asset_Card-Ace win_fail/fail_01.png' },
+            { key: 'black_sin', path: 'assets/game/asset_Card-Ace win_fail/black-sin.png' },
         ];
 
         const sfxs = [
-            // No audio assets found
+            { key: 'sfx_click', path: 'assets/sfx/u_8g40a9z0la-click-234708.mp3' },
+            { key: 'sfx_deal', path: 'assets/sfx/oxidvideos-shuffling-deck-of-cards-522518.mp3' },
+            { key: 'sfx_play_user', path: 'assets/sfx/oxidvideos-taking-playing-card-522520.mp3' },
+            { key: 'sfx_play_bot', path: 'assets/sfx/oxidvideos-taking-playing-card-2-522516.mp3' },
+            { key: 'sfx_bgm', path: 'assets/sfx/casino-vip-music-vip-casino-music-7-469284.mp3' },
+            { key: 'sfx_win', path: 'assets/sfx/bithuh-pop-win-casino-winning-398059.mp3' },
+            { key: 'sfx_fail', path: 'assets/sfx/u_8g40a9z0la-fail-234710.mp3' }
         ];
 
         for (const asset of assets) {

@@ -20,6 +20,11 @@ class End extends Phaser.Scene {
             robot_user_02: { x: 878, y: 960, scale: 0.8, depth: 80 },
             robot_user_03: { x: 550, y: 340, scale: 0.8, depth: 80 },
             user_02: { x: 240, y: 960, scale: 0.8, depth: 80 },
+            win_fail_logo: { x: 540, y: 400, scale: 1, depth: 200 },
+            win_bg: { x: 540, y: 960, scale: 1, depth: 198 },
+            win_img: { x: 540, y: 960, scale: 1, depth: 200 },
+            fail_img: { x: 540, y: 960, scale: 1, depth: 200 },
+            action_btn_container: { x: 540, y: 1520, scale: 1.2, depth: 200 },
         };
 
         this.LAYOUT_LANDSCAPE = {
@@ -41,14 +46,34 @@ class End extends Phaser.Scene {
             robot_user_02: { x: 960, y: 206, scale: 1, depth: 80 },
             robot_user_03: { x: 170, y: 540, scale: 1, depth: 80 },
             user_02: { x: 960, y: 890, scale: 1, depth: 80 },
+            win_fail_logo: { x: 960, y: 150, scale: 0.8, depth: 200 },
+            win_bg: { x: 960, y: 540, scale: 0.8, depth: 198 },
+            win_img: { x: 960, y: 540, scale: 0.8, depth: 200 },
+            fail_img: { x: 960, y: 540, scale: 0.8, depth: 200 },
+            action_btn_container: { x: 960, y: 930, scale: 1.0, depth: 200 },
         };
     }
 
+    init(data) {
+        this.didWin = data.didWin || false;
+    }
+
     create() {
+        const settings = window.CARD_ACE_SETTINGS || {};
+        const audioSettings = settings.audio || { enabled: true };
+        this.sound.mute = !audioSettings.enabled;
+
+        if (this.didWin) {
+            this.sound.play('sfx_win');
+        } else {
+            this.sound.play('sfx_fail');
+        }
+        
         this.createEndUI();
         this.onOrientationChange();
+        
         this.uiEditor = new UIEditor(this, {
-            enabled: true,
+            enabled: !!(window.CARD_ACE_SETTINGS?.editor?.uiEditorEnabled),
             keys: this.getEditorKeys(),
             gridSize: 10,
             fileName: 'end.js'
@@ -57,30 +82,31 @@ class End extends Phaser.Scene {
 
     getEditorKeys() {
         return [
-            // 'card_ace_screen_0_table',
-            // 'card_ace_screen_01_bg',
-            // 'card_logo',
-            // 'diamond',
-            // 'icon_02_1',
-            // 'icon_02_2',
-            // 'icon_02_3',
-            // 'icon_02_4',
-            // 'no_bg_0_big_01',
-            // 'no_bg_0_big_02',
-            // 'no_bg_01',
-            // 'no_bg_02',
-            // 'no_bg_03',
-            // 'no_bg_04',
-            // 'robot_user_01',
-            // 'robot_user_02',
-            // 'robot_user_03',
-            // 'user_02',
+            'card_ace_screen_0_table',
+            'card_ace_screen_01_bg',
+            'card_logo',
+            'diamond',
+            'icon_02_1',
+            'icon_02_2',
+            'icon_02_3',
+            'icon_02_4',
+            'no_bg_0_big_01',
+            'no_bg_0_big_02',
+            'no_bg_01',
+            'no_bg_02',
+            'no_bg_03',
+            'no_bg_04',
+            'robot_user_01',
+            'robot_user_02',
+            'robot_user_03',
+            'user_02',
         ];
     }
 
     createEndUI() {
         this.card_ace_screen_0_table = this.add.image(0, 0, 'card_ace_screen_0_table').setOrigin(0.5);
         this.card_ace_screen_01_bg = this.add.image(0, 0, 'card_ace_screen_01_bg').setOrigin(0.5);
+        this.black_sin = this.add.image(0, 0, 'black_sin').setOrigin(0.5);
         this.card_logo = this.add.image(0, 0, 'card_logo').setOrigin(0.5);
 
         this.diamond = this.add.image(0, 0, 'diamond').setOrigin(0.5);
@@ -104,28 +130,62 @@ class End extends Phaser.Scene {
         this.user_02 = this.add.image(0, 0, 'user_02').setOrigin(0.5);
 
         this.endUIContainer = this.add.container(0, 0);
+
+        this.win_fail_logo = this.add.image(0, 0, 'win_fail_logo').setOrigin(0.5);
+        this.win_bg = this.add.image(0, 0, 'win_bg').setOrigin(0.5);
+        this.win_img = this.add.image(0, 0, 'win_img').setOrigin(0.5);
+        this.fail_img = this.add.image(0, 0, 'fail_img').setOrigin(0.5);
+        this.action_btn_container = this.add.container(0, 0);
+        
+        const btnKey = this.didWin ? 'download_btn' : 'try_again_btn';
+        this.action_btn = this.add.image(0, 0, btnKey).setOrigin(0.5);
+        this.action_btn.setInteractive({ useHandCursor: true }).on('pointerdown', () => {
+            // Restart game on click
+            this.scene.start('Start');
+        });
+
+        this.action_btn_container.add(this.action_btn);
+
+        // Add subtle pulse animation to the inner button
+        // The container handles layout scaling, leaving this free to tween independently.
+        this.tweens.add({
+            targets: this.action_btn,
+            scaleX: 1.05,
+            scaleY: 1.05,
+            duration: 1500,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
+        // Set visibility based on win/loss
+        this.win_bg.setVisible(this.didWin);
+        this.win_img.setVisible(this.didWin);
+        this.fail_img.setVisible(!this.didWin);
+
         this.endUIContainer.add([
             this.card_ace_screen_0_table,
-
             this.no_bg_0_big_01,
             this.no_bg_0_big_02,
-
             this.no_bg_01,
             this.no_bg_02,
             this.no_bg_03,
             this.no_bg_04,
-
             this.robot_user_01,
             this.robot_user_02,
             this.robot_user_03,
             this.user_02,
-
             this.diamond,
             this.icon_02_1,
             this.icon_02_2,
             this.icon_02_3,
             this.icon_02_4,
-
+            this.black_sin,
+            this.win_fail_logo,
+            this.win_bg,
+            this.win_img,
+            this.fail_img,
+            this.action_btn_container
         ]);
     }
 
@@ -150,9 +210,14 @@ class End extends Phaser.Scene {
 
         const bgScale = Math.max(gameW / this.card_ace_screen_01_bg.width, gameH / this.card_ace_screen_01_bg.height);
         this.card_ace_screen_01_bg.setPosition(centerX, centerY).setScale(bgScale);
-
+        
         const endUIScale = Math.min(scaleX, scaleY);
         this.endUIContainer.setPosition(centerX, centerY).setScale(endUIScale);
+
+        if (this.black_sin) {
+            const sinScale = Math.max(gameW / this.black_sin.width, gameH / this.black_sin.height);
+            this.black_sin.setPosition(0, 0).setScale(sinScale / endUIScale);
+        }
 
         // Dynamic screen-dependent positions
         const safePadding = 30 * endUIScale;
