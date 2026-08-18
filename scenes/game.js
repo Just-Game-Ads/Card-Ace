@@ -4,8 +4,8 @@ class Game extends Phaser.Scene {
 
         this.LAYOUT_PORTRAIT = {
             card_ace_screen_0_table: { x: 540, y: 960, scale: 1, angle: 90, depth: 2 },
-            clock_bg: { x: 250, y: 330, scale: 0.95, depth: 10 },
-            timer_text: { x: 250, y: 330, scale: 1, depth: 11 },
+            clock_bg: { x: 250, y: 180, scale: 0.95, depth: 10 },
+            timer_text: { x: 250, y: 180, scale: 1, depth: 11 },
             diamond: { x: 180, y: 1020, scale: 0.9, depth: 81 },
             icon_02_1: { x: 576, y: 110, scale: 1, depth: 81 },
             icon_02_2: { x: 900, y: 864, scale: 1, depth: 81 },
